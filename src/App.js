@@ -6,14 +6,15 @@ import * as VK from './js/services/VK';
 
 import {Epic, View, Root, Tabbar, ModalRoot, TabbarItem, ConfigProvider} from "@vkontakte/vkui";
 
-import Icon28Newsfeed from '@vkontakte/icons/dist/28/newsfeed';
-import Icon28More from '@vkontakte/icons/dist/28/more';
+import Icon28CameraOutline from '@vkontakte/icons/dist/28/camera_outline';
+import Icon28Menu from '@vkontakte/icons/dist/28/menu';
+import Icon28HelpOutline from '@vkontakte/icons/dist/28/help_outline';
 
 import HomePanelBase from './js/panels/home/base';
 import HomePanelGroups from './js/panels/home/groups';
 
-import MorePanelBase from './js/panels/more/base';
-import MorePanelExample from './js/panels/more/example';
+import PhotoPanel from './js/panels/photos/base';
+import MorePanelExample from './js/panels/photos/example';
 
 import HomeBotsListModal from './js/components/modals/HomeBotsListModal';
 import HomeBotInfoModal from './js/components/modals/HomeBotInfoModal';
@@ -84,11 +85,18 @@ class App extends React.Component {
                         <TabbarItem
                             onClick={() => setStory('home', 'base')}
                             selected={activeStory === 'home'}
-                        ><Icon28Newsfeed/></TabbarItem>
+                            text="Программа"
+                        ><Icon28Menu/></TabbarItem>
                         <TabbarItem
-                            onClick={() => setStory('more', 'callmodal')}
-                            selected={activeStory === 'more'}
-                        ><Icon28More/></TabbarItem>
+                            onClick={() => setStory('photos', 'photos')}
+                            selected={activeStory === 'photos'}
+                            text="Фотографии"
+                        ><Icon28CameraOutline/></TabbarItem>
+                        <TabbarItem
+                            onClick={() => setStory('about', 'about')}
+                            selected={activeStory === 'about'}
+                            text="О форуме"
+                        ><Icon28HelpOutline/></TabbarItem>
                     </Tabbar>
                 }>
                     <Root id="home" activeView={activeView} popout={popout}>
@@ -103,24 +111,26 @@ class App extends React.Component {
                             <HomePanelGroups id="groups"/>
                         </View>
                     </Root>
-                    <Root id="more" activeView={activeView} popout={popout}>
+                    <Root id="photos" activeView={activeView} popout={popout}>
                         <View
-                            id="more"
+                            id="photos"
                             modal={homeModals}
                             activePanel={activePanel}
                             history={history}
                             onSwipeBack={() => goBack()}
                         >
-                            <MorePanelBase id="callmodal"/>
+                            <PhotoPanel id="photos"/>
                         </View>
+                    </Root>
+                    <Root id="about" activeView={activeView} popout={popout}>
                         <View
-                            id="modal"
+                            id="about"
                             modal={homeModals}
                             activePanel={activePanel}
                             history={history}
                             onSwipeBack={() => goBack()}
                         >
-                            <MorePanelExample id="filters"/>
+                            <PhotoPanel id="about"/>
                         </View>
                     </Root>
                 </Epic>

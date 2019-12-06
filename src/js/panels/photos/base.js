@@ -17,7 +17,7 @@ import {
     Tabs
 } from "@vkontakte/vkui";
 
-class HomePanelProfile extends React.Component {
+class PhotoPanel extends React.Component {
 
     constructor(props) {
         super(props);
@@ -106,4 +106,4 @@ const mapDispatchToProps = {
     setScrollPositionByID
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePanelProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoPanel);

@@ -40,8 +40,8 @@ class HomePanelBase extends React.Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader>Examples</PanelHeader>
-                <Group>
+                <PanelHeader>Программа форума</PanelHeader>
+                <Group title="Текущее мероприятие">
                     <Div>
                         <Button size="l" stretched={true} onClick={() => setPage('home', 'groups')}>Список моих
                             групп</Button>
