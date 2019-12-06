@@ -6,7 +6,7 @@ import {store} from "../../index";
 import {setColorScheme, setAccessToken} from "../store/vk/actions";
 
 const APP_ID = 7237019;
-const API_VERSION = '5.92';
+const API_VERSION = '5.103';
 
 export const initApp = () => (dispatch) => {
     const VKConnectOldCallback = (e) => {
@@ -21,7 +21,7 @@ export const initApp = () => (dispatch) => {
     VKConnect.send('VKWebAppInit', {});
 };
 
-export const getAuthToken = (scope) => (dispatch) => {
+export const getAuthToken = (scope = []) => (dispatch) => {
     VKConnect.send("VKWebAppGetAuthToken", {
         "app_id": APP_ID,
         "scope": scope.join(',')

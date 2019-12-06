@@ -1,44 +1,125 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
+import {closePopout, goBack, openModal, openPopout} from '../../store/router/actions';
 
-import {Cell, Group, List, Panel, PanelHeader} from "@vkontakte/vkui";
-import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
-import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
+import {Button, Div, Group, List, Panel, PanelHeader, PanelSpinner} from "@vkontakte/vkui";
+
+import * as VK from '../../services/VK';
+import {bindActionCreators} from "redux";
+import {renderPostsList} from "../../services/renderers";
 
 class PhotoPanel extends React.Component {
+
+    state = {
+        posts: [],
+        authors: [],
+        loading: true,
+        errorGetAuthToken: false
+    };
+
+    componentDidMount() {
+        if (this.props.accessToken === undefined) {
+            this.getAuthToken();
+        } else {
+            this.getPostsList();
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props !== prevProps) {
+            if (this.props.accessToken === null) {
+                this.setState({
+                    loading: false,
+                    errorGetAuthToken: true
+                });
+            } else {
+                this.setState({
+                    loading: true,
+                    errorGetAuthToken: false
+                });
+
+                this.getPostsList();
+            }
+        }
+    }
+
+    async getPostsList() {
+        /*if (localStorage.getItem('posts')) {
+            this.setState({
+                posts: localStorage.getItem('posts'),
+                loading: false
+            });
+            return;
+        }*/
+
+        let posts = await VK.APICall("newsfeed.search", {
+            q: "#kazanforumdoc",
+            extended: 1,
+            count: 50,
+            fields: "photo_50,screen_name"
+        });
+
+        console.log(posts);
+
+        let authors = {
+            groups: posts.groups,
+            profiles: posts.profiles
+        };
+        posts = posts.items.filter(function (item) {
+            return item.attachments && item.attachments.length > 0 && item.attachments[0].type === "photo";
+        });
+
+        localStorage.setItem('posts', JSON.stringify(posts));
+        localStorage.setItem('authors', JSON.stringify(authors));
+
+        this.setState({
+            posts,
+            authors,
+            loading: false
+        });
+    }
+
+    getAuthToken() {
+        this.props.dispatch(VK.getAuthToken());
+    }
+
     render() {
         const {id} = this.props;
 
+        let renderedPosts = renderPostsList(this.state.posts, this.state.authors);
+
         return (
             <Panel id={id}>
-                <PanelHeader>Программа форума</PanelHeader>
-                <Group title="Текущее мероприятие">
-                    <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
-                          description="09:00-11:00">Teambuilding</Cell>
-                </Group>
-                <Group title="Следующее мероприятие">
-                    <Cell before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
-                          description="11:00-11:20">Организационное собрание</Cell>
-                </Group>
-                <Group title="Остальное расписание">
-                    <List>
-                        <Cell description="11:30-11:50">Официальное открытие</Cell>
-                        <Cell description="11:50-12:30">Обед</Cell>
-                    </List>
-                </Group>
+                <PanelHeader>Фотографии с хештегом</PanelHeader>
+                {this.state.loading && <PanelSpinner/>}
+                {!this.state.loading && this.state.errorGetAuthToken && <Group>
+                    <Div>Возникла ошибка при получении данных.</Div>
+                    <Div>
+                        <Button size="l" stretched={true} onClick={() => this.getAuthToken()}>Запросить
+                            повторно</Button>
+                    </Div>
+                </Group>}
+                {!this.state.loading && !this.state.errorGetAuthToken && renderedPosts &&
+                <div>
+                    {renderedPosts}
+                </div>}
             </Panel>
         );
     }
 }
 
-const mapDispatchToProps = {
-    setPage,
-    goBack,
-    openPopout,
-    closePopout,
-    openModal
+function mapDispatchToProps(dispatch) {
+    return {
+        dispatch,
+        ...bindActionCreators({goBack, openPopout, closePopout, openModal}, dispatch)
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        accessToken: state.vkui.accessToken
+    };
 };
 
-export default connect(null, mapDispatchToProps)(PhotoPanel);
+export default connect(mapStateToProps, mapDispatchToProps)(PhotoPanel);
