@@ -45,13 +45,14 @@ class PhotoPanel extends React.Component {
     }
 
     async getPostsList() {
-        /*if (localStorage.getItem('posts')) {
+        if (localStorage.getItem('posts')) {
             this.setState({
-                posts: localStorage.getItem('posts'),
+                posts: JSON.parse(localStorage.getItem('posts')),
+                authors: JSON.parse(localStorage.getItem('authors')),
                 loading: false
             });
             return;
-        }*/
+        }
 
         let posts = await VK.APICall("newsfeed.search", {
             q: "#kazanforumdoc",
