@@ -13,7 +13,7 @@ class AboutPanel extends React.Component {
         super(props);
 
         this.state = {
-            activeTab: props.activeTab["EXAMPLE"] || "about"
+            activeTab: props.activeTab["ABOUT"] || "about"
         };
     }
 
@@ -26,8 +26,8 @@ class AboutPanel extends React.Component {
     componentWillUnmount() {
         const {setScrollPositionByID, setActiveTab} = this.props;
 
-        setActiveTab("EXAMPLE", this.state.activeTab);
-        setScrollPositionByID("EXAMPLE_TABS_LIST");
+        setActiveTab("ABOUT", this.state.activeTab);
+        setScrollPositionByID("ABOUT_TABS");
     }
 
     componentDidMount() {
@@ -40,10 +40,10 @@ class AboutPanel extends React.Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader noShadow={true}>Examples 2</PanelHeader>
+                <PanelHeader noShadow={true}>О форуме</PanelHeader>
                 <FixedLayout vertical="top">
                     <Tabs theme="header" type="buttons">
-                        <HorizontalScroll id="EXAMPLE_TABS_LIST">
+                        <HorizontalScroll id="ABOUT_TABS">
                             <TabsItem
                                 onClick={() => this.setTab('about')}
                                 selected={this.state.activeTab === 'about'}

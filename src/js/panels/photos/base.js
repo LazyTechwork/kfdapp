@@ -1,109 +1,44 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-import {setPage} from "../../store/router/actions";
-import {setActiveTab, setScrollPositionByID} from "../../store/vk/actions";
-import {restoreScrollPosition} from "../../services/_functions";
+import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 
-import {
-    Div,
-    Panel,
-    Group,
-    CellButton,
-    PanelHeader,
-    FixedLayout,
-    HorizontalScroll,
-    TabsItem,
-    Tabs
-} from "@vkontakte/vkui";
+import {Cell, Group, List, Panel, PanelHeader} from "@vkontakte/vkui";
+import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
+import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 
 class PhotoPanel extends React.Component {
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            activeTab: props.activeTab["EXAMPLE"] || "modal"
-        };
-    }
-
-    setTab(tab) {
-        this.setState({
-            activeTab: tab
-        });
-    }
-
-    componentWillUnmount() {
-        const {setScrollPositionByID, setActiveTab} = this.props;
-
-        setActiveTab("EXAMPLE", this.state.activeTab);
-        setScrollPositionByID("EXAMPLE_TABS_LIST");
-    }
-
-    componentDidMount() {
-        restoreScrollPosition();
-    }
-
     render() {
-        const {id, setPage} = this.props;
-        const boxStyle = {marginTop: 56};
+        const {id} = this.props;
 
         return (
             <Panel id={id}>
-                <PanelHeader noShadow={true}>Examples 2</PanelHeader>
-                <FixedLayout vertical="top">
-                    <Tabs theme="header" type="buttons">
-                        <HorizontalScroll id="EXAMPLE_TABS_LIST">
-                            <TabsItem
-                                onClick={() => this.setTab('modal')}
-                                selected={this.state.activeTab === 'modal'}
-                            >
-                                Модальное окно
-                            </TabsItem>
-                            <TabsItem
-                                onClick={() => this.setTab('test')}
-                                selected={this.state.activeTab === 'test'}
-                            >
-                                Для теста
-                            </TabsItem>
-                            <TabsItem
-                                onClick={() => this.setTab('test2')}
-                                selected={this.state.activeTab === 'test2'}
-                            >
-                                Для теста 2
-                            </TabsItem>
-                            <TabsItem
-                                onClick={() => this.setTab('test3')}
-                                selected={this.state.activeTab === 'test3'}
-                            >
-                                Для теста 3
-                            </TabsItem>
-                        </HorizontalScroll>
-                    </Tabs>
-                </FixedLayout>
-                <Group style={boxStyle}>
-                    {this.state.activeTab === 'modal' && <CellButton onClick={() => setPage('modal', 'filters')}>
-                        Открыть модальное окно
-                    </CellButton>}
-
-                    {this.state.activeTab !== 'modal' && <Div>{this.state.activeTab}</Div>}
+                <PanelHeader>Программа форума</PanelHeader>
+                <Group title="Текущее мероприятие">
+                    <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
+                          description="09:00-11:00">Teambuilding</Cell>
+                </Group>
+                <Group title="Следующее мероприятие">
+                    <Cell before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
+                          description="11:00-11:20">Организационное собрание</Cell>
+                </Group>
+                <Group title="Остальное расписание">
+                    <List>
+                        <Cell description="11:30-11:50">Официальное открытие</Cell>
+                        <Cell description="11:50-12:30">Обед</Cell>
+                    </List>
                 </Group>
             </Panel>
         );
     }
-
 }
-
-const mapStateToProps = (state) => {
-    return {
-        activeTab: state.vkui.activeTab,
-    };
-};
 
 const mapDispatchToProps = {
     setPage,
-    setActiveTab,
-    setScrollPositionByID
+    goBack,
+    openPopout,
+    closePopout,
+    openModal
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhotoPanel);
+export default connect(null, mapDispatchToProps)(PhotoPanel);

@@ -8,17 +8,8 @@ import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 
 class HomePanelBase extends React.Component {
-
-    state = {
-        showImg: false
-    };
-
-    showImg = () => {
-        this.setState({showImg: true});
-    };
-
     render() {
-        const {id, setPage} = this.props;
+        const {id} = this.props;
 
         return (
             <Panel id={id}>
