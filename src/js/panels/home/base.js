@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 
-import {Div, Panel, Alert, Group, Button, PanelHeader} from "@vkontakte/vkui"
+import {Avatar, Panel, List, Group, Cell, PanelHeader} from "@vkontakte/vkui";
+import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
+import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 
 class HomePanelBase extends React.Component {
 
@@ -15,50 +17,25 @@ class HomePanelBase extends React.Component {
         this.setState({showImg: true});
     };
 
-    openPopout() {
-        this.props.openPopout(
-            <Alert
-                actions={[{
-                    title: 'Нет',
-                    autoclose: true,
-                    style: 'cancel',
-                }, {
-                    title: 'Да',
-                    autoclose: true,
-                    action: this.showImg
-                }]}
-                onClose={() => this.props.closePopout()}
-            >
-                <h2>Вопрос значит</h2>
-                <p>Вас роняли в детстве?</p>
-            </Alert>
-        );
-    }
-
     render() {
-        const {id, setPage, withoutEpic} = this.props;
+        const {id, setPage} = this.props;
 
         return (
             <Panel id={id}>
                 <PanelHeader>Программа форума</PanelHeader>
                 <Group title="Текущее мероприятие">
-                    <Div>
-                        <Button size="l" stretched={true} onClick={() => setPage('home', 'groups')}>Список моих
-                            групп</Button>
-                    </Div>
-                    <Div>
-                        <Button size="l" stretched={true} onClick={() => this.openPopout()}>Открыть алерт</Button>
-                    </Div>
-                    <Div>
-                        <Button size="l" stretched={true} onClick={() => this.props.openModal("MODAL_PAGE_BOTS_LIST")}>Открыть
-                            модальную страницу</Button>
-                    </Div>
-                    {withoutEpic && <Div>
-                        <Button size="l" stretched={true} onClick={() => setPage('modal', 'filters')}>Открыть модальное окно</Button>
-                    </Div>}
-                    {this.state.showImg && <Div className="div-center">
-                        <img src="https://vk.com/sticker/1-12676-256" alt="Стикер VK"/>
-                    </Div>}
+                    <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
+                          description="09:00-11:00">Teambuilding</Cell>
+                </Group>
+                <Group title="Следующее мероприятие">
+                    <Cell before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
+                          description="11:00-11:20">Организационное собрание</Cell>
+                </Group>
+                <Group title="Остальное расписание">
+                    <List>
+                        <Cell description="11:30-11:50">Официальное открытие</Cell>
+                        <Cell description="11:50-12:30">Обед</Cell>
+                    </List>
                 </Group>
             </Panel>
         );
