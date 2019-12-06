@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 
-import {Avatar, Panel, List, Group, Cell, PanelHeader} from "@vkontakte/vkui";
+import {Cell, Group, List, Panel, PanelHeader} from "@vkontakte/vkui";
 import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 

@@ -5,17 +5,7 @@ import {setPage} from "../../store/router/actions";
 import {setActiveTab, setScrollPositionByID} from "../../store/vk/actions";
 import {restoreScrollPosition} from "../../services/_functions";
 
-import {
-    Div,
-    Panel,
-    Group,
-    CellButton,
-    PanelHeader,
-    FixedLayout,
-    HorizontalScroll,
-    TabsItem,
-    Tabs
-} from "@vkontakte/vkui";
+import {Button, Div, FixedLayout, Group, HorizontalScroll, Panel, PanelHeader, Tabs, TabsItem} from "@vkontakte/vkui";
 
 class AboutPanel extends React.Component {
 
@@ -23,7 +13,7 @@ class AboutPanel extends React.Component {
         super(props);
 
         this.state = {
-            activeTab: props.activeTab["EXAMPLE"] || "modal"
+            activeTab: props.activeTab["EXAMPLE"] || "about"
         };
     }
 
@@ -55,39 +45,114 @@ class AboutPanel extends React.Component {
                     <Tabs theme="header" type="buttons">
                         <HorizontalScroll id="EXAMPLE_TABS_LIST">
                             <TabsItem
-                                onClick={() => this.setTab('modal')}
-                                selected={this.state.activeTab === 'modal'}
+                                onClick={() => this.setTab('about')}
+                                selected={this.state.activeTab === 'about'}
                             >
-                                Модальное окно
+                                О форуме
                             </TabsItem>
                             <TabsItem
-                                onClick={() => this.setTab('test')}
-                                selected={this.state.activeTab === 'test'}
+                                onClick={() => this.setTab('sections')}
+                                selected={this.state.activeTab === 'sections'}
                             >
-                                Для теста
+                                Секции
                             </TabsItem>
                             <TabsItem
-                                onClick={() => this.setTab('test2')}
-                                selected={this.state.activeTab === 'test2'}
+                                onClick={() => this.setTab('road')}
+                                selected={this.state.activeTab === 'road'}
                             >
-                                Для теста 2
-                            </TabsItem>
-                            <TabsItem
-                                onClick={() => this.setTab('test3')}
-                                selected={this.state.activeTab === 'test3'}
-                            >
-                                Для теста 3
+                                Маршрут
                             </TabsItem>
                         </HorizontalScroll>
                     </Tabs>
                 </FixedLayout>
-                <Group style={boxStyle}>
-                    {this.state.activeTab === 'modal' && <CellButton onClick={() => setPage('modal', 'filters')}>
-                        Открыть модальное окно
-                    </CellButton>}
-
-                    {this.state.activeTab !== 'modal' && <Div>{this.state.activeTab}</Div>}
-                </Group>
+                <div style={boxStyle}>
+                    {this.state.activeTab === 'about' &&
+                    <Group title="О форуме">
+                        <Div>
+                            У тебя есть проект, но ты нуждаешься в экспертной оценке и задаешься вопросами:<br/>
+                            - как исправить недостатки проекта?<br/>
+                            - что делать дальше и кто мне в этом поможет?<br/>
+                            - как вывести мой проект на новый уровень и стать успешным?
+                        </Div>
+                        <Div>
+                            Тогда не забудь оставить заявку на участие в Форуме высоких технологий "kazanforum.doc", и
+                            ты получишь ответы на все твои вопросы от высококлассных экспертов, преподавателей
+                            Казанского Федерального университета и ведущих предпринимателей страны!
+                        </Div>
+                        <Div>
+                            <Button size="xl" level="primary"
+                                    onClick={() => window.open('https://vk.com/@kazanforumdoc-about')}>Подробнее</Button>
+                        </Div>
+                    </Group>}
+                    {this.state.activeTab === 'sections' &&
+                    <div>
+                        <Group title="Инженерные технологии и робототехнические системы">
+                            <Div>
+                                <ul>
+                                    <li>Эффективное использование городских территориальных ресурсов</li>
+                                    <li>Интеллектуальные энергосистемы</li>
+                                    <li>Умный дом</li>
+                                    <li>Транспортная среда будущего</li>
+                                    <li>Новые девайсы и гаджеты</li>
+                                    <li>Биометрия и нейроинтерфейсы</li>
+                                    <li>Телекоммуникации</li>
+                                    <li>Радиоэлектроника</li>
+                                    <li>Манипуляторы и логистические системы</li>
+                                    <li>Автономные транспортные системы</li>
+                                    <li>Беспилотные летательные аппараты (коптеры)</li>
+                                    <li>Мехатроника</li>
+                                </ul>
+                            </Div>
+                        </Group>
+                        <Group title="Сфера IT и услуг">
+                            <Div>
+                                <ul>
+                                    <li>Сайты и веб-приложения</li>
+                                    <li>Мультимедиа и FLASH-проекты</li>
+                                    <li>Расширения для браузеров</li>
+                                    <li>Собственные библиотеки</li>
+                                    <li>Боты в мессенджерах и социальных сетях</li>
+                                    <li>Технологии обеспечения защиты информации</li>
+                                    <li>Защита персональных данных</li>
+                                    <li>Денежная система и инновационные методы платежа</li>
+                                    <li>Облачные технологии</li>
+                                    <li>Blockchain-технологии</li>
+                                    <li>Игры и приложения</li>
+                                    <li>Умные помощники</li>
+                                    <li>BigData, машинное обучение</li>
+                                    <li>Искусственный интеллект, нейронные сети</li>
+                                    <li>Виртуальная и дополненная реальность</li>
+                                </ul>
+                            </Div>
+                        </Group>
+                        <Group title="Предпринимательская деятельность">
+                            <Div>
+                                <ul>
+                                    <li>Школьные бизнес-компании</li>
+                                    <li>Стартапы</li>
+                                    <li>Социальные бизнес-проекты</li>
+                                </ul>
+                                <i>*необходимо наличие бизнес-плана, финансовой отчетности</i>
+                            </Div>
+                        </Group>
+                    </div>}
+                    {this.state.activeTab === 'road' &&
+                    <Group title="Маршрут">
+                        <Div>
+                            Наш адрес: <b>г. Казань, территория Деревни Универсиады, д. 32 (IT-лицей КФУ)</b>
+                        </Div>
+                        <Div>
+                            Проход на территорию Деревни Универсиады осуществляется через КПП №7, который находится
+                            перед лицеем, напротив автозаправочной станции. Для прохода на
+                            территорию необходимо предъявить документ, удостоверяющий личность. О том как доехать и не
+                            только в документе ниже.
+                        </Div>
+                        <Div>
+                            <Button size="xl" level="primary"
+                                    onClick={() => window.open('https://vk.com/doc-68489482_523030748')}>Подробнее</Button>
+                        </Div>
+                    </Group>}
+                </div>
             </Panel>
         );
     }

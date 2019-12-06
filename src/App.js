@@ -14,7 +14,8 @@ import HomePanelBase from './js/panels/home/base';
 import HomePanelGroups from './js/panels/home/groups';
 
 import PhotoPanel from './js/panels/photos/base';
-import MorePanelExample from './js/panels/photos/example';
+
+import AboutPanel from './js/panels/about/base';
 
 import HomeBotsListModal from './js/components/modals/HomeBotsListModal';
 import HomeBotInfoModal from './js/components/modals/HomeBotInfoModal';
@@ -130,7 +131,7 @@ class App extends React.Component {
                             history={history}
                             onSwipeBack={() => goBack()}
                         >
-                            <PhotoPanel id="about"/>
+                            <AboutPanel id="about"/>
                         </View>
                     </Root>
                 </Epic>
