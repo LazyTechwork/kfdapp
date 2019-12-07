@@ -5,6 +5,9 @@ import {setPage} from "../../store/router/actions";
 import {setActiveTab, setScrollPositionByID} from "../../store/vk/actions";
 import {restoreScrollPosition} from "../../services/_functions";
 
+import Icon24Article from '@vkontakte/icons/dist/24/article';
+import Icon24Attachments from '@vkontakte/icons/dist/24/attachments';
+
 import {Button, Div, FixedLayout, Group, HorizontalScroll, Panel, PanelHeader, Tabs, TabsItem} from "@vkontakte/vkui";
 
 class AboutPanel extends React.Component {
@@ -80,7 +83,7 @@ class AboutPanel extends React.Component {
                             Казанского Федерального университета и ведущих предпринимателей страны!
                         </Div>
                         <Div>
-                            <Button size="xl" level="primary"
+                            <Button before={<Icon24Article/>} size="l" stretched level="tertiary"
                                     onClick={() => window.open('https://vk.com/@kazanforumdoc-about')}>Подробнее</Button>
                         </Div>
                     </Group>}
@@ -148,7 +151,7 @@ class AboutPanel extends React.Component {
                             только в документе ниже.
                         </Div>
                         <Div>
-                            <Button size="xl" level="primary"
+                            <Button before={<Icon24Attachments/>} size="l" stretched level="tertiary"
                                     onClick={() => window.open('https://vk.com/doc-68489482_523030748')}>Подробнее</Button>
                         </Div>
                     </Group>}

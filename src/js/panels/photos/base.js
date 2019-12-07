@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout} from '../../store/router/actions';
 
-import {Button, Div, Group, List, Panel, PanelHeader, PanelSpinner} from "@vkontakte/vkui";
+import {Button, Div, Group, Panel, PanelHeader, PanelSpinner} from "@vkontakte/vkui";
 
 import * as VK from '../../services/VK';
 import {bindActionCreators} from "redux";
