@@ -20,11 +20,12 @@ export const renderGroupsList = (items) => {
 export const renderTimetableList = (items) => {
     let tt = null;
     if (items !== undefined && items !== null && items.length !== 0) {
-        items.splice(0, 1);
-        tt = items.map((time) => (
-            <Cell
-                description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
-        ));
+        tt = items.map((time, i) => {
+            return i > 0 ? (
+                <Cell
+                    description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
+            ) : null;
+        });
     }
     return tt;
 };

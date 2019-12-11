@@ -15,20 +15,20 @@ const timetable = [
     {
         name: 'Teambuilding',
         place: 'Спортивный зал',
-        time1: moment('11.12.2019 22:30', 'DD.MM.YYYY HH:mm'),
-        time2: moment('12.12.2019 00:30', 'DD.MM.YYYY HH:mm')
+        time1: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
+        time2: moment('20.12.2019 11:00', 'DD.MM.YYYY HH:mm')
     },
     {
         name: 'Закрытие',
         place: 'Актовый зал',
-        time1: moment('12.12.2019 01:30', 'DD.MM.YYYY HH:mm'),
-        time2: moment('12.12.2019 02:30', 'DD.MM.YYYY HH:mm')
+        time1: moment('21.12.2019 16:30', 'DD.MM.YYYY HH:mm'),
+        time2: moment('21.12.2019 17:30', 'DD.MM.YYYY HH:mm')
     },
     {
         name: 'Открытие',
         place: 'Актовый зал',
-        time1: moment('12.12.2019 00:30', 'DD.MM.YYYY HH:mm'),
-        time2: moment('12.12.2019 01:30', 'DD.MM.YYYY HH:mm')
+        time1: moment('20.12.2019 11:30', 'DD.MM.YYYY HH:mm'),
+        time2: moment('20.12.2019 11:50', 'DD.MM.YYYY HH:mm')
     },
 ];
 const forumSettings = {
@@ -56,12 +56,13 @@ class HomePanelBase extends React.Component {
                 currentEvent = el;
         });
         tt = timetable.filter(el => {
-            return +el.time1 >= +currentEvent.time2;
+            return currentEvent ? +el.time1 >= +currentEvent.time2 : +el.time1 >= +now;
         });
         tt.sort((a, b) => {
-            return +b.time1 - +a.time1;
+            return +a.time1 - +b.time1;
         });
         this.timetable = {tt: tt, currentEvent: currentEvent};
+        console.log(JSON.stringify(this.timetable));
     }
 
     componentWillUnmount() {
