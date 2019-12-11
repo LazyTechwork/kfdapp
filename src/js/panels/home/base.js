@@ -13,12 +13,6 @@ moment.locale('ru');
 
 const timetable = [
     {
-        name: 'Teambuilding',
-        place: 'Спортивный зал',
-        time1: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
-        time2: moment('20.12.2019 11:00', 'DD.MM.YYYY HH:mm')
-    },
-    {
         name: 'Закрытие',
         place: 'Актовый зал',
         time1: moment('21.12.2019 16:30', 'DD.MM.YYYY HH:mm'),
@@ -30,9 +24,33 @@ const timetable = [
         time1: moment('20.12.2019 11:30', 'DD.MM.YYYY HH:mm'),
         time2: moment('20.12.2019 11:50', 'DD.MM.YYYY HH:mm')
     },
+    {
+        name: 'Регистрация участников / Teambuilding',
+        place: 'Холл (1 этаж) / Спортивный зал',
+        time1: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
+        time2: moment('20.12.2019 11:00', 'DD.MM.YYYY HH:mm')
+    },
+    {
+        name: 'Организационное собрание',
+        place: 'Актовый зал',
+        time1: moment('20.12.2019 11:00', 'DD.MM.YYYY HH:mm'),
+        time2: moment('20.12.2019 11:20', 'DD.MM.YYYY HH:mm')
+    },
+    {
+        name: 'Обед',
+        place: 'Столовая',
+        time1: moment('20.12.2019 11:50', 'DD.MM.YYYY HH:mm'),
+        time2: moment('20.12.2019 12:30', 'DD.MM.YYYY HH:mm')
+    },
+    {
+        name: 'Образовательная программа',
+        place: 'По кабинетам',
+        time1: moment('20.12.2019 12:30', 'DD.MM.YYYY HH:mm'),
+        time2: moment('20.12.2019 16:00', 'DD.MM.YYYY HH:mm')
+    },
 ];
 const forumSettings = {
-    start: moment('20.12.2019 00:00', 'DD.MM.YYYY HH:mm'),
+    start: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
     end: moment('21.12.2019 20:00', 'DD.MM.YYYY HH:mm'),
 };
 
