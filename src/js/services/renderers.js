@@ -17,6 +17,18 @@ export const renderGroupsList = (items) => {
     return groups;
 };
 
+export const renderTimetableList = (items) => {
+    let tt = null;
+    if (items !== undefined && items !== null && items.length !== 0) {
+        items.splice(0, 1);
+        tt = items.map((time) => (
+            <Cell
+                description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
+        ));
+    }
+    return tt;
+};
+
 export const renderPostsList = (items, authors) => {
     let posts = null;
     console.log(authors);
