@@ -1,14 +1,14 @@
 {
-  "name": "vkminiappboilerplate",
+  "name": "kfdapp",
   "version": "1.0.0",
-  "description": "",
+  "description": "App for kazanforum.doc. Made by LazyTechwork.",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=10888 react-scripts start",
     "build": "react-scripts build"
   },
   "keywords": [],
-  "author": "",
+  "author": "LazyTechwork",
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.2.0",
@@ -25,6 +25,7 @@
     "babel-eslint": "^9.0.0",
     "chalk": "^2.4.2",
     "core-js": "^2.6.9",
+    "moment": "^2.24.0",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
