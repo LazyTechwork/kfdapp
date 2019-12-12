@@ -32,7 +32,6 @@ export const renderTimetableList = (items) => {
 
 export const renderPostsList = (items, authors) => {
     let posts = null;
-    console.log(authors);
     if (items !== undefined && items !== null && items.length !== 0) {
         posts = items.map((post, i) => {
             let ph = post.attachments[0].photo;

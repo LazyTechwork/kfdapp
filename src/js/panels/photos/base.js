@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout} from '../../store/router/actions';
 
-import {Button, Div, Group, Panel, PanelHeader, PanelSpinner} from "@vkontakte/vkui";
+import {Button, Div, Group, Panel, PanelHeader, PanelSpinner, PullToRefresh} from "@vkontakte/vkui";
 
 import * as VK from '../../services/VK';
 import {bindActionCreators} from "redux";
 import {renderPostsList} from "../../services/renderers";
+import moment, {now} from "moment";
 
 class PhotoPanel extends React.Component {
 
@@ -44,8 +45,10 @@ class PhotoPanel extends React.Component {
         }
     }
 
-    async getPostsList() {
-        if (localStorage.getItem('posts')) {
+    async getPostsList(cache = true) {
+        this.setState({loading: true});
+        console.log(+now() - localStorage.getItem('cached'));
+        if ((+now() - localStorage.getItem('cached') > 3600000) || (cache && localStorage.getItem('posts'))) {
             this.setState({
                 posts: JSON.parse(localStorage.getItem('posts')),
                 authors: JSON.parse(localStorage.getItem('authors')),
@@ -61,8 +64,6 @@ class PhotoPanel extends React.Component {
             fields: "photo_50,screen_name"
         });
 
-        console.log(posts);
-
         let authors = {
             groups: posts.groups,
             profiles: posts.profiles
@@ -73,6 +74,7 @@ class PhotoPanel extends React.Component {
 
         localStorage.setItem('posts', JSON.stringify(posts));
         localStorage.setItem('authors', JSON.stringify(authors));
+        localStorage.setItem('cached', +now());
 
         this.setState({
             posts,
@@ -93,18 +95,20 @@ class PhotoPanel extends React.Component {
         return (
             <Panel id={id}>
                 <PanelHeader>Фотографии с хештегом</PanelHeader>
-                {this.state.loading && <PanelSpinner/>}
-                {!this.state.loading && this.state.errorGetAuthToken && <Group>
-                    <Div>Возникла ошибка при получении данных.</Div>
-                    <Div>
-                        <Button size="l" stretched={true} onClick={() => this.getAuthToken()}>Запросить
-                            повторно</Button>
-                    </Div>
-                </Group>}
-                {!this.state.loading && !this.state.errorGetAuthToken && renderedPosts &&
-                <div>
-                    {renderedPosts}
-                </div>}
+                <PullToRefresh onRefresh={() => this.getPostsList(false)} isFetching={this.state.loading}>
+                    {/*{this.state.loading && <PanelSpinner/>}*/}
+                    {!this.state.loading && this.state.errorGetAuthToken && <Group>
+                        <Div>Возникла ошибка при получении данных.</Div>
+                        <Div>
+                            <Button size="l" stretched={true} onClick={() => this.getAuthToken()}>Запросить
+                                повторно</Button>
+                        </Div>
+                    </Group>}
+                    {!this.state.loading && !this.state.errorGetAuthToken && renderedPosts &&
+                    <div>
+                        {renderedPosts}
+                    </div>}
+                </PullToRefresh>
             </Panel>
         );
     }

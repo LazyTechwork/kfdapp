@@ -80,7 +80,6 @@ class HomePanelBase extends React.Component {
             return +a.time1 - +b.time1;
         });
         this.timetable = {tt: tt, currentEvent: currentEvent};
-        console.log(JSON.stringify(this.timetable));
     }
 
     componentWillUnmount() {
