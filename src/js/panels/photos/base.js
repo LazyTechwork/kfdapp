@@ -48,7 +48,7 @@ class PhotoPanel extends React.Component {
     async getPostsList(cache = true) {
         this.setState({loading: true});
         console.log(+now() - localStorage.getItem('cached'));
-        if ((+now() - localStorage.getItem('cached') > 3600000) || (cache && localStorage.getItem('posts'))) {
+        if (localStorage.getItem('cached') && ((+now() - localStorage.getItem('cached') > 3600000) || (cache && localStorage.getItem('posts')))) {
             this.setState({
                 posts: JSON.parse(localStorage.getItem('posts')),
                 authors: JSON.parse(localStorage.getItem('authors')),
