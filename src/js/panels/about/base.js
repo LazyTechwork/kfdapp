@@ -9,6 +9,7 @@ import Icon24Article from '@vkontakte/icons/dist/24/article';
 import Icon24Attachments from '@vkontakte/icons/dist/24/attachments';
 
 import {Button, Div, FixedLayout, Group, HorizontalScroll, Panel, PanelHeader, Tabs, TabsItem} from "@vkontakte/vkui";
+import logo from "../../../img/icon_white.svg";
 
 class AboutPanel extends React.Component {
 
@@ -43,7 +44,16 @@ class AboutPanel extends React.Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader noShadow={true}>О форуме</PanelHeader>
+                <PanelHeader noShadow={true}>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100%',
+                        width: '100%'
+                    }}><img src={logo} alt="kazanforum.doc" height="90%" style={{marginRight: '7px'}}/> О форуме
+                    </div>
+                </PanelHeader>
                 <FixedLayout vertical="top">
                     <Tabs theme="header" type="buttons">
                         <HorizontalScroll id="ABOUT_TABS">

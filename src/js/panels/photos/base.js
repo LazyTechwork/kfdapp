@@ -9,6 +9,7 @@ import * as VK from '../../services/VK';
 import {bindActionCreators} from "redux";
 import {renderPostsList} from "../../services/renderers";
 import {now} from "moment";
+import logo from "../../../img/icon_white.svg";
 
 class PhotoPanel extends React.Component {
 
@@ -94,7 +95,17 @@ class PhotoPanel extends React.Component {
 
         return (
             <Panel id={id}>
-                <PanelHeader>Фотографии с хештегом</PanelHeader>
+                <PanelHeader>
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        height: '100%',
+                        width: '100%'
+                    }}><img src={logo} alt="kazanforum.doc" height="90%" style={{marginRight: '7px'}}/> Фотографии
+                        #kazanforumdoc
+                    </div>
+                </PanelHeader>
                 <PullToRefresh onRefresh={() => this.getPostsList(false)} isFetching={this.state.loading}>
                     {/*{this.state.loading && <PanelSpinner/>}*/}
                     {!this.state.loading && this.state.errorGetAuthToken && <Group>
