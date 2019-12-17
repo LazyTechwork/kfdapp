@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 
 import {closePopout, goBack, openModal, openPopout} from '../../store/router/actions';
 
-import {Button, Div, Group, Panel, PanelHeader, PanelSpinner, PullToRefresh} from "@vkontakte/vkui";
+import {Button, Div, Group, Panel, PanelHeader, PullToRefresh} from "@vkontakte/vkui";
 
 import * as VK from '../../services/VK';
 import {bindActionCreators} from "redux";
 import {renderPostsList} from "../../services/renderers";
-import moment, {now} from "moment";
+import {now} from "moment";
 
 class PhotoPanel extends React.Component {
 

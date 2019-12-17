@@ -38,7 +38,7 @@ class AboutPanel extends React.Component {
     }
 
     render() {
-        const {id, setPage} = this.props;
+        const {id} = this.props;
         const boxStyle = {marginTop: 56};
 
         return (

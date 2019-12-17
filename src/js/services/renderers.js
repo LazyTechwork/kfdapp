@@ -1,8 +1,8 @@
 import React from 'react';
 import GroupCell from '../components/GroupCell';
 
-import {Group, Cell, Div, Button, Avatar} from "@vkontakte/vkui";
-import moment, {now} from "moment";
+import {Avatar, Button, Cell, Div, Group} from "@vkontakte/vkui";
+import moment from "moment";
 
 export const renderGroupsList = (items) => {
     let groups = null;
