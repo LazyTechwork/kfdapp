@@ -58,8 +58,8 @@ const timetable = [
     },
 ];
 const forumSettings = {
-    start: moment('17.12.2019 18:40', 'DD.MM.YYYY HH:mm'),
-    end: moment('17.12.2019 18:59', 'DD.MM.YYYY HH:mm'),
+    start: moment('17.12.2019 19:40', 'DD.MM.YYYY HH:mm'),
+    end: moment('21.12.2019 15:00', 'DD.MM.YYYY HH:mm'),
 };
 
 class HomePanelBase extends React.Component {
@@ -80,11 +80,13 @@ class HomePanelBase extends React.Component {
     updateTimetable() {
         let now = moment().utcOffset('+03:00');
         let tt = [], currentEvent = null;
-        if (+now < +forumSettings.start || this.untilStart && this.untilStart.milliseconds() > 0)
+        if (+now < +forumSettings.start || this.untilStart && this.untilStart.milliseconds() > 0) {
             this.untilStart = moment.duration(forumSettings.start.diff(now));
-        else if (this.untilStart)
+            this.setState({isStarted: false});
+        } else if (this.untilStart) {
             this.untilStart = null;
-
+            this.setState({isStarted: true});
+        }
         if (+now >= +forumSettings.end)
             this.setState({isEnded: true});
 
@@ -103,7 +105,6 @@ class HomePanelBase extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.inter);
-        clearInterval(this.startInt);
     }
 
     render() {
@@ -122,7 +123,7 @@ class HomePanelBase extends React.Component {
                     }}><img src={logo} alt="kazanforum.doc" height="90%" style={{marginRight: '7px'}}/> kazanforum.doc
                     </div>
                 </PanelHeader>
-                {!this.state.isEnded && !this.untilStart && this.state.timetable.currentEvent &&
+                {!this.state.isEnded && this.state.isStarted && this.state.timetable.currentEvent &&
                 <Group title="Текущее мероприятие">
                     <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
                           description={this.state.timetable.currentEvent.place + " (" + this.state.timetable.currentEvent.time1.format('HH:mm') + ' - ' + this.state.timetable.currentEvent.time2.format('HH:mm') + ")"}>{this.state.timetable.currentEvent.name}</Cell>
@@ -133,7 +134,7 @@ class HomePanelBase extends React.Component {
                           description="До старта форума">{this.untilStart.locale('ru').humanize().charAt(0).toUpperCase() + this.untilStart.locale('ru').humanize().slice(1)}</Cell>
                 </Group>
                 }
-                {!this.state.isEnded && this.state.timetable.tt &&
+                {!this.state.isEnded && this.state.isStarted && this.state.timetable.tt &&
                 <div>
                     <Group title="Следующее мероприятие">
                         <Cell before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
