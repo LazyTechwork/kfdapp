@@ -21,14 +21,20 @@ const timetable = [
     {
         name: 'Открытие',
         place: 'Актовый зал',
-        time1: moment('20.12.2019 11:30', 'DD.MM.YYYY HH:mm'),
-        time2: moment('20.12.2019 11:50', 'DD.MM.YYYY HH:mm')
+        time1: moment('16.12.2019 17:30', 'DD.MM.YYYY HH:mm'),
+        time2: moment('16.12.2019 20:50', 'DD.MM.YYYY HH:mm')
     },
     {
         name: 'Регистрация участников / Teambuilding',
         place: 'Холл (1 этаж) / Спортивный зал',
-        time1: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
-        time2: moment('20.12.2019 11:00', 'DD.MM.YYYY HH:mm')
+        time1: moment('16.12.2019 21:00', 'DD.MM.YYYY HH:mm'),
+        time2: moment('16.12.2019 22:00', 'DD.MM.YYYY HH:mm')
+    },
+    {
+        name: 'Регистрация участников / Teambuilding',
+        place: 'Холл (1 этаж) / Спортивный зал',
+        time1: moment('16.12.2019 22:00', 'DD.MM.YYYY HH:mm'),
+        time2: moment('16.12.2019 23:00', 'DD.MM.YYYY HH:mm')
     },
     {
         name: 'Организационное собрание',
@@ -50,8 +56,8 @@ const timetable = [
     },
 ];
 const forumSettings = {
-    start: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
-    end: moment('21.12.2019 20:00', 'DD.MM.YYYY HH:mm'),
+    start: moment('16.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
+    end: moment('17.12.2019 20:00', 'DD.MM.YYYY HH:mm'),
 };
 
 class HomePanelBase extends React.Component {
@@ -84,6 +90,7 @@ class HomePanelBase extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.inter);
+        clearInterval(this.startInt);
     }
 
     render() {
@@ -110,7 +117,7 @@ class HomePanelBase extends React.Component {
                         <Cell before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
                               description={this.timetable.tt[0].place + " (" + this.timetable.tt[0].time1.format('HH:mm') + ' - ' + this.timetable.tt[0].time2.format('HH:mm') + ")"}>{this.timetable.tt[0].name}</Cell>
                     </Group>
-                    <Group title="Остальное расписание">
+                    <Group title="Мероприятия на сегодня">
                         <List>
                             {renderedTimetable}
                         </List>

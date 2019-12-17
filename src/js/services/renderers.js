@@ -2,6 +2,7 @@ import React from 'react';
 import GroupCell from '../components/GroupCell';
 
 import {Group, Cell, Div, Button, Avatar} from "@vkontakte/vkui";
+import moment, {now} from "moment";
 
 export const renderGroupsList = (items) => {
     let groups = null;
@@ -21,7 +22,7 @@ export const renderTimetableList = (items) => {
     let tt = null;
     if (items !== undefined && items !== null && items.length !== 0) {
         tt = items.map((time, i) => {
-            return i > 0 ? (
+            return i > 0 && time.time1.day() === moment().day() ? (
                 <Cell
                     description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
             ) : null;
