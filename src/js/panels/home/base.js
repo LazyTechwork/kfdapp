@@ -59,7 +59,7 @@ const timetable = [
 ];
 const forumSettings = {
     start: moment('17.12.2019 18:40', 'DD.MM.YYYY HH:mm'),
-    end: moment('17.12.2019 18:43', 'DD.MM.YYYY HH:mm'),
+    end: moment('17.12.2019 18:59', 'DD.MM.YYYY HH:mm'),
 };
 
 class HomePanelBase extends React.Component {
@@ -145,11 +145,7 @@ class HomePanelBase extends React.Component {
                         </List>
                     </Group>
                 </div>}
-                {this.state.isEnded &&
-                <div>
-                    <Cell>Форум завершён!</Cell>
-                </div>
-                }
+                {this.state.isEnded && <Cell style={{textAlign: 'center'}}><h1>Форум завершён!</h1></Cell>}
             </Panel>
         );
     }
