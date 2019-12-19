@@ -8,8 +8,21 @@ import {restoreScrollPosition} from "../../services/_functions";
 import Icon24Article from '@vkontakte/icons/dist/24/article';
 import Icon24Attachments from '@vkontakte/icons/dist/24/attachments';
 
-import {Button, Div, FixedLayout, Group, HorizontalScroll, Panel, PanelHeader, Tabs, TabsItem} from "@vkontakte/vkui";
+import {
+    Button,
+    Div,
+    FixedLayout,
+    Group,
+    HorizontalScroll,
+    Panel,
+    PanelHeader,
+    Tabs,
+    TabsItem,
+    Avatar,
+    Cell
+} from "@vkontakte/vkui";
 import logo from "../../../img/icon_white.svg";
+import app_icon from "../../../img/app_icon.svg";
 
 class AboutPanel extends React.Component {
 
@@ -73,6 +86,12 @@ class AboutPanel extends React.Component {
                                 selected={this.state.activeTab === 'road'}
                             >
                                 Маршрут
+                            </TabsItem>
+                            <TabsItem
+                                onClick={() => this.setTab('app')}
+                                selected={this.state.activeTab === 'app'}
+                            >
+                                О приложении
                             </TabsItem>
                         </HorizontalScroll>
                     </Tabs>
@@ -164,6 +183,40 @@ class AboutPanel extends React.Component {
                                     onClick={() => window.open('https://vk.com/doc-68489482_523030748')}>Подробнее</Button>
                         </Div>
                     </Group>}
+                    {this.state.activeTab === 'app' &&
+                    <div>
+                        <Group title="О приложении">
+                            <Div style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                flexDirection: 'column',
+                            }}>
+                                <Avatar type="app" size={100} src={app_icon}/><br/>
+                                Приложение kazanforum.doc
+                            </Div>
+                        </Group>
+                        <Group>
+                            <Cell
+                                photo="https://pp.userapi.com/c857736/v857736654/e1674/GChsb4wpzcU.jpg"
+                                description="Разработчик"
+                                bottomContent={<Button onClick={()=>window.open('https://vk.com/id242521347')}>Перейти</Button>}
+                                before={<Avatar src="https://pp.userapi.com/c857736/v857736654/e1674/GChsb4wpzcU.jpg"
+                                                size={80}/>}
+                                size="l"
+                            >Иван Петров
+                            </Cell>
+                            <Cell
+                                photo="https://pp.userapi.com/c850636/v850636069/19d75a/bmS0664xqG0.jpg"
+                                description="Партнёр"
+                                bottomContent={<Button onClick={()=>window.open('https://vk.com/tekly')}>Перейти</Button>}
+                                before={<Avatar src="https://pp.userapi.com/c850636/v850636069/19d75a/bmS0664xqG0.jpg"
+                                                size={80}/>}
+                                size="l"
+                            >Иван Петров
+                            </Cell>
+                        </Group>
+                    </div>}
                 </div>
             </Panel>
         );
