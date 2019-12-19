@@ -145,7 +145,7 @@ class HomePanelBase extends React.Component {
                 currentEvent.push(el);
         });
         tt = timetable.filter(el => {
-            return currentEvent ? +el.time1 >= +currentEvent[currentEvent.length-1].time2 : +el.time1 >= +now;
+            return currentEvent.length > 0 ? +el.time1 >= +currentEvent[currentEvent.length-1].time2 : +el.time1 >= +now;
         });
         tt.sort((a, b) => {
             return +a.time1 - +b.time1;
