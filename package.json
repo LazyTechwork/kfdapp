@@ -1,11 +1,13 @@
 {
   "name": "kfdapp",
   "version": "1.0.0",
+  "homepage": "./",
   "description": "App for kazanforum.doc. Made by LazyTechwork.",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=10888 react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "deploy": "vk-miniapps-deploy"
   },
   "keywords": [],
   "author": "LazyTechwork",
