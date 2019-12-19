@@ -9,7 +9,7 @@ import 'moment/locale/ru';
 import {Cell, Group, List, Panel, PanelHeader, Avatar, Button} from "@vkontakte/vkui";
 import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
-
+import Icon56FireOutline from '@vkontakte/icons/dist/56/fire_outline';
 import logo from '../../../img/icon_white.svg';
 
 moment.locale('ru');
@@ -200,10 +200,10 @@ class HomePanelBase extends React.Component {
 
                 <Group>
                     <Cell size="l"
-                          before={<Avatar src="//pp.userapi.com/c854528/v854528820/199bde/ZzcLBFcdvpE.jpg" size={56}/>}
-                          bottomContent={<Button size="m"
-                                                 level="primary"
-                                                 onClick={() => vkConnect.send("VKWebAppJoinGroup", {"group_id": 68489482})}>Подписаться</Button>}>Группа ВКонтакте</Cell>
+                          before={<Icon56FireOutline style={{color: "#f0004b"}}/>}
+                          bottomContent={<Button level="primary"
+                                                 onClick={() => vkConnect.send("VKWebAppJoinGroup", {"group_id": 68489482})}>Подписаться</Button>}>Группа
+                        ВКонтакте</Cell>
                 </Group>
             </Panel>
         );
