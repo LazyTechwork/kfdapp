@@ -102,9 +102,7 @@ class PhotoPanel extends React.Component {
                         alignItems: 'center',
                         height: '100%',
                         width: '100%'
-                    }}><img src={logo} alt="kazanforum.doc" height="90%" style={{marginRight: '7px'}}/> Фотографии
-                        #kazanforumdoc
-                    </div>
+                    }}><img src={logo} alt="kazanforum.doc" height="85%" style={{marginRight: '7px'}}/></div>
                 </PanelHeader>
                 <PullToRefresh onRefresh={() => this.getPostsList(false)} isFetching={this.state.loading}>
                     {/*{this.state.loading && <PanelSpinner/>}*/}

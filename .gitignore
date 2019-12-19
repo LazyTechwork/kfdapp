@@ -3,6 +3,7 @@ logs
 *.log
 npm-debug.log*
 *.lock
+bundle.zip
 
 # Dependency directories
 package-lock.json
@@ -16,5 +17,3 @@ package-lock.json
 
 .vscode
 .idea
-
-bundle.zip
