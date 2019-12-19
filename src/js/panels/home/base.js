@@ -106,7 +106,7 @@ const timetable = [
     }
 ];
 const forumSettings = {
-    start: moment('19.12.2019 09:30', 'DD.MM.YYYY HH:mm'),
+    start: moment('20.12.2019 09:30', 'DD.MM.YYYY HH:mm'),
     end: moment('21.12.2019 18:30', 'DD.MM.YYYY HH:mm'),
 };
 
