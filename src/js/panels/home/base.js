@@ -203,9 +203,7 @@ class HomePanelBase extends React.Component {
                           before={<Avatar src="//pp.userapi.com/c854528/v854528820/199bde/ZzcLBFcdvpE.jpg" size={56}/>}
                           bottomContent={<Button size="m"
                                                  level="primary"
-                                                 onClick={() => vkConnect.send("VKWebAppJoinGroup", {"group_id": 68489482})}>Подписаться</Button>}>Следите
-                        за новостями в нашей
-                        группе ВКонтакте!</Cell>
+                                                 onClick={() => vkConnect.send("VKWebAppJoinGroup", {"group_id": 68489482})}>Подписаться</Button>}>Группа ВКонтакте</Cell>
                 </Group>
             </Panel>
         );
