@@ -1,11 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import vkConnect from "@vkontakte/vk-connect";
 import {closePopout, goBack, openModal, openPopout, setPage} from '../../store/router/actions';
 import {renderCurList, renderTimetableList} from '../../services/renderers';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-import {Cell, Group, List, Panel, PanelHeader} from "@vkontakte/vkui";
+import {Cell, Group, List, Panel, PanelHeader, Avatar, Button} from "@vkontakte/vkui";
 import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 
@@ -145,13 +146,12 @@ class HomePanelBase extends React.Component {
                 currentEvent.push(el);
         });
         tt = timetable.filter(el => {
-            return currentEvent.length > 0 ? +el.time1 >= +currentEvent[currentEvent.length-1].time2 : +el.time1 >= +now;
+            return currentEvent.length > 0 ? +el.time1 >= +currentEvent[currentEvent.length - 1].time2 : +el.time1 >= +now;
         });
         tt.sort((a, b) => {
             return +a.time1 - +b.time1;
         });
         this.setState({timetable: {tt: tt, currentEvent: currentEvent}});
-        console.log(this.state);
     }
 
     componentWillUnmount() {
@@ -198,6 +198,16 @@ class HomePanelBase extends React.Component {
                     </Group>
                 </div>}
                 {this.state.isEnded && <Cell style={{textAlign: 'center'}}><h1>Форум завершён!</h1></Cell>}
+
+                <Group>
+                    <Cell size="l"
+                          before={<Avatar src="//pp.userapi.com/c854528/v854528820/199bde/ZzcLBFcdvpE.jpg" size={56}/>}
+                          bottomContent={<Button size="m"
+                                                 level="primary"
+                                                 onClick={() => vkConnect.send("VKWebAppJoinGroup", {"group_id": 68489482})}>Подписаться</Button>}>Следите
+                        за новостями в нашей
+                        группе ВКонтакте!</Cell>
+                </Group>
             </Panel>
         );
     }
