@@ -164,7 +164,7 @@ class HomePanelBase extends React.Component {
         let renderedTimetable = renderTimetableList(this.state.timetable.tt);
 
         return (
-            <Panel id={id} theme={this.state.isEnded ? "white" : ""}>
+            <Panel id={id} theme={this.state.isEnded ? "white" : "gray"}>
                 <PanelHeader>
                     <div style={{
                         display: 'flex',
