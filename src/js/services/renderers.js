@@ -2,6 +2,7 @@ import React from 'react';
 import GroupCell from '../components/GroupCell';
 
 import {Avatar, Button, Cell, Div, Group} from "@vkontakte/vkui";
+import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
 import moment from "moment";
 
 export const renderGroupsList = (items) => {
@@ -26,6 +27,19 @@ export const renderTimetableList = (items) => {
                 <Cell
                     description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
             ) : null;
+        });
+    }
+    return tt;
+};
+
+export const renderCurList = (items) => {
+    let tt = null;
+    if (items !== undefined && items !== null && items.length !== 0) {
+        tt = items.map((time, i) => {
+            return (
+                <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
+                      description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
+            );
         });
     }
     return tt;
