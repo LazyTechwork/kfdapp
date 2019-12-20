@@ -6,7 +6,7 @@ import {renderCurList, renderTimetableList} from '../../services/renderers';
 import moment from 'moment';
 import 'moment/locale/ru';
 
-import {Cell, Group, List, Panel, PanelHeader, Avatar, Button} from "@vkontakte/vkui";
+import {Button, Cell, Group, List, Panel, PanelHeader} from "@vkontakte/vkui";
 import Icon56ErrorOutline from '@vkontakte/icons/dist/56/error_outline';
 import Icon56RecentOutline from '@vkontakte/icons/dist/56/recent_outline';
 import Icon56FireOutline from '@vkontakte/icons/dist/56/fire_outline';
@@ -176,7 +176,7 @@ class HomePanelBase extends React.Component {
                 </PanelHeader>
                 {this.untilStart &&
                 <Group>
-                    <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
+                    <Cell multiline={true} before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
                           description="До старта форума">{this.untilStart.locale('ru').humanize().charAt(0).toUpperCase() + this.untilStart.locale('ru').humanize().slice(1)}</Cell>
                 </Group>
                 }
@@ -187,7 +187,7 @@ class HomePanelBase extends React.Component {
                 {!this.state.isEnded && this.state.isStarted && this.state.timetable.tt &&
                 <div>
                     <Group title="Следующее мероприятие">
-                        <Cell before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
+                        <Cell multiline={true} before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
                               description={this.state.timetable.tt[0].place + " (" + this.state.timetable.tt[0].time1.format('HH:mm') + ' - ' + this.state.timetable.tt[0].time2.format('HH:mm') + ")"}>{this.state.timetable.tt[0].name}</Cell>
                     </Group>
                     <Group title="Мероприятия на сегодня">
@@ -199,7 +199,7 @@ class HomePanelBase extends React.Component {
                 {this.state.isEnded && <Cell style={{textAlign: 'center'}}><h1>Форум завершён!</h1></Cell>}
 
                 <Group>
-                    <Cell size="l"
+                    <Cell size="l" multiline={true}
                           before={<Icon56FireOutline style={{color: "#f0004b"}}/>}
                           bottomContent={<Button level="primary"
                                                  onClick={() => vkConnect.send("VKWebAppJoinGroup", {"group_id": 68489482})}>Подписаться</Button>}>Группа

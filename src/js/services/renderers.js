@@ -24,8 +24,8 @@ export const renderTimetableList = (items) => {
     if (items !== undefined && items !== null && items.length !== 0) {
         tt = items.map((time, i) => {
             return i > 0 && time.time1.day() === moment().day() ? (
-                <Cell
-                    description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
+                <Cell key={'event-' + i} multiline={true}
+                      description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
             ) : null;
         });
     }
@@ -37,7 +37,7 @@ export const renderCurList = (items) => {
     if (items !== undefined && items !== null && items.length !== 0) {
         tt = items.map((time, i) => {
             return (
-                <Cell before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
+                <Cell key={'curevent-' + i} multiline={true} before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
                       description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
             );
         });
@@ -70,7 +70,7 @@ export const renderPostsList = (items, authors) => {
                     username: author.screen_name
                 };
             }
-            return <Group key={i}>
+            return <Group key={'post-' + i}>
                 <Cell styles={{marginBottom: '10px'}} onClick={() => window.open(`https://vk.com/${author.username}`)}
                       before={<Avatar src={author.avatar}/>} description={`@${author.username}`}>{author.name}</Cell>
                 <img src={ph.sizes[ph.sizes.length - 1].url} alt="" style={{width: '100%'}}/>

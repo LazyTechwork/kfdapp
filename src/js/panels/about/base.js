@@ -9,7 +9,9 @@ import Icon24Article from '@vkontakte/icons/dist/24/article';
 import Icon24Attachments from '@vkontakte/icons/dist/24/attachments';
 
 import {
+    Avatar,
     Button,
+    Cell,
     Div,
     FixedLayout,
     Group,
@@ -17,9 +19,7 @@ import {
     Panel,
     PanelHeader,
     Tabs,
-    TabsItem,
-    Avatar,
-    Cell
+    TabsItem
 } from "@vkontakte/vkui";
 import logo from "../../../img/icon_white.svg";
 import app_icon from "../../../img/app_icon.svg";
@@ -200,7 +200,8 @@ class AboutPanel extends React.Component {
                             <Cell
                                 photo="https://pp.userapi.com/c857736/v857736654/e1674/GChsb4wpzcU.jpg"
                                 description="Разработчик"
-                                bottomContent={<Button onClick={()=>window.open('https://vk.com/id242521347')}>Перейти</Button>}
+                                bottomContent={<Button
+                                    onClick={() => window.open('https://vk.com/id242521347')}>Перейти</Button>}
                                 before={<Avatar src="https://pp.userapi.com/c857736/v857736654/e1674/GChsb4wpzcU.jpg"
                                                 size={80}/>}
                                 size="l"
@@ -209,7 +210,8 @@ class AboutPanel extends React.Component {
                             <Cell
                                 photo="https://pp.userapi.com/c850636/v850636069/19d75a/bmS0664xqG0.jpg"
                                 description="Партнёр"
-                                bottomContent={<Button onClick={()=>window.open('https://vk.com/tekly')}>Перейти</Button>}
+                                bottomContent={<Button
+                                    onClick={() => window.open('https://vk.com/tekly')}>Перейти</Button>}
                                 before={<Avatar src="https://pp.userapi.com/c850636/v850636069/19d75a/bmS0664xqG0.jpg"
                                                 size={80}/>}
                                 size="l"
