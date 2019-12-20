@@ -22,7 +22,7 @@ const timetable = [
         time2: moment('21.12.2019 17:30', 'DD.MM.YYYY HH:mm')
     },
     {
-        name: 'Регистрация участников / Teambuilding',
+        name: 'Регистрация участников \n Teambuilding',
         place: 'Холл (1 этаж) / Спортивный зал',
         time1: moment('20.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
         time2: moment('20.12.2019 11:00', 'DD.MM.YYYY HH:mm')
@@ -52,8 +52,8 @@ const timetable = [
         time2: moment('20.12.2019 16:00', 'DD.MM.YYYY HH:mm')
     },
     {
-        name: 'Работа над проектами / Feedback-сессия',
-        place: 'Группа 1 - 104 и 105 каб. / Группа 2 - 325 и 331 каб. / Группа 3 - 322 и 323 каб.',
+        name: 'Работа над проектами \n Feedback-сессия',
+        place: 'Группа 1 - 104 и 105 каб. \n Группа 2 - 325 и 331 каб. \n Группа 3 - 322 и 323 каб.',
         time1: moment('20.12.2019 16:00', 'DD.MM.YYYY HH:mm'),
         time2: moment('20.12.2019 17:30', 'DD.MM.YYYY HH:mm')
     },
@@ -71,7 +71,7 @@ const timetable = [
     },
     {
         name: 'Защита проектов',
-        place: 'Группа 1 - 325 каб. / Группа 2 - библиотека / Группа 3 - 323 каб.',
+        place: 'Группа 1 - 325 каб. \n Группа 2 - библиотека \n Группа 3 - 323 каб.',
         time1: moment('21.12.2019 09:00', 'DD.MM.YYYY HH:mm'),
         time2: moment('21.12.2019 13:00', 'DD.MM.YYYY HH:mm')
     },
@@ -100,7 +100,7 @@ const timetable = [
         time2: moment('21.12.2019 16:30', 'DD.MM.YYYY HH:mm')
     },
     {
-        name: 'Закрытие / Церемония награждения',
+        name: 'Закрытие \n Церемония награждения',
         place: 'Актовый зал',
         time1: moment('21.12.2019 16:30', 'DD.MM.YYYY HH:mm'),
         time2: moment('21.12.2019 17:30', 'DD.MM.YYYY HH:mm')
@@ -125,6 +125,13 @@ class HomePanelBase extends React.Component {
     componentWillMount() {
         this.updateTimetable();
         this.inter = setInterval(() => this.updateTimetable(), 2500);
+        timetable.map((el) => {
+            el.desc = el.place.replace(/(?:\r\n|\r|\n)/g, '\n').split('\n').map(row => (
+                <div><span>{row}</span><br/></div>));
+            el.name = el.name.replace(/(?:\r\n|\r|\n)/g, '\n').split('\n').map(row => (
+                <div><span>{row}</span><br/></div>));
+            el.desc.push(<div><span>{el.time1.format('HH:mm') + ' - ' + el.time2.format('HH:mm')}</span></div>);
+        });
     }
 
 
@@ -188,7 +195,7 @@ class HomePanelBase extends React.Component {
                 <div>
                     <Group title="Следующее мероприятие">
                         <Cell multiline={true} before={<Icon56RecentOutline style={{color: "#42b83b"}}/>}
-                              description={this.state.timetable.tt[0].place + " (" + this.state.timetable.tt[0].time1.format('HH:mm') + ' - ' + this.state.timetable.tt[0].time2.format('HH:mm') + ")"}>{this.state.timetable.tt[0].name}</Cell>
+                              description={this.state.timetable.tt[0].desc}>{this.state.timetable.tt[0].name}</Cell>
                     </Group>
                     <Group title="Мероприятия на сегодня">
                         <List>

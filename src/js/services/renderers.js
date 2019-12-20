@@ -25,7 +25,7 @@ export const renderTimetableList = (items) => {
         tt = items.map((time, i) => {
             return i > 0 && time.time1.day() === moment().day() ? (
                 <Cell key={'event-' + i} multiline={true}
-                      description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
+                      description={time.desc}>{time.name}</Cell>
             ) : null;
         });
     }
@@ -38,7 +38,7 @@ export const renderCurList = (items) => {
         tt = items.map((time, i) => {
             return (
                 <Cell key={'curevent-' + i} multiline={true} before={<Icon56ErrorOutline style={{color: "#5181b8"}}/>}
-                      description={time.place + " (" + time.time1.format('HH:mm') + ' - ' + time.time2.format('HH:mm') + ")"}>{time.name}</Cell>
+                      description={time.desc}>{time.name}</Cell>
             );
         });
     }
