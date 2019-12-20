@@ -213,7 +213,7 @@ class AboutPanel extends React.Component {
                                 before={<Avatar src="https://pp.userapi.com/c850636/v850636069/19d75a/bmS0664xqG0.jpg"
                                                 size={80}/>}
                                 size="l"
-                            >Иван Петров
+                            >Tekly Technologies
                             </Cell>
                         </Group>
                     </div>}
