@@ -126,6 +126,8 @@ class HomePanelBase extends React.Component {
         this.updateTimetable();
         this.inter = setInterval(() => this.updateTimetable(), 2500);
         timetable.map((el) => {
+            if (typeof el.desc !== 'undefined')
+                return;
             el.desc = el.place.replace(/(?:\r\n|\r|\n)/g, '\n').split('\n').map(row => (
                 <div><span>{row}</span><br/></div>));
             el.name = el.name.replace(/(?:\r\n|\r|\n)/g, '\n').split('\n').map(row => (
